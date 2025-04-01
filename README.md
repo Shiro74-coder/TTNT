@@ -1,4 +1,4 @@
 # TTNT
 Bài tập cá nhân
 BFS 
-![BFS](https://github.com/Shiro74-coder/TTNT/blob/main/BFS.gif)
+![BFS](https://github.com/Shiro74-coder/TTNT/blob/main/BFS%20(1).gif)
