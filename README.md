@@ -31,7 +31,7 @@ Bài tập cá nhân
 
                             SIMPLE_HC
 
-![SIMPLEHC](hhttps://github.com/Shiro74-coder/TTNT/blob/main/SimpleHC.gif)
+![SIMPLEHC](https://github.com/Shiro74-coder/TTNT/blob/main/SimpleHC.gif)
 
                             STEEPEST_HC
 
