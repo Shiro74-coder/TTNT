@@ -36,3 +36,15 @@ Bài tập cá nhân
                             STEEPEST_HC
 
 ![STEEPEST_HC](https://github.com/Shiro74-coder/TTNT/blob/main/SteepestHC.gif)
+
+                            STOCHASTIC
+![Stochastic](https://github.com/Shiro74-coder/TTNT/blob/main/Stochastic.gif)
+
+                            SIMULATED ANNEALING
+![Simulated_Annealing](https://github.com/Shiro74-coder/TTNT/blob/main/Simulated_Annealing.gif)
+
+                            BEAM 
+![BeamSearch](https://github.com/Shiro74-coder/TTNT/blob/main/BeamSearch.gif)
+
+                          Genetic_GA
+![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
