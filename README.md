@@ -48,3 +48,9 @@ Bài tập cá nhân
 
                           Genetic_GA
 ![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
+
+                          And_Or_Search
+![And_Or_Search](https://github.com/Shiro74-coder/TTNT/blob/main/and_or_search.gif)
+
+                          Search_no_Observation
+![And_Or_Search](https://github.com/Shiro74-coder/TTNT/blob/main/search_no_obs.gif)
