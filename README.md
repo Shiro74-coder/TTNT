@@ -54,8 +54,8 @@ BFS là một thuật toán tìm kiếm duyệt đồ thị hoặc cây theo t�
                             SIMPLE_HC
 
 ![SIMPLEHC](https://github.com/Shiro74-coder/TTNT/blob/main/SimpleHC.gif)
-                            STEEPEST_HC
 
+                            STEEPEST_HC
 ![STEEPEST_HC](https://github.com/Shiro74-coder/TTNT/blob/main/SteepestHC.gif)
 
                             STOCHASTIC
