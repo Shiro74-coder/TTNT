@@ -41,7 +41,7 @@ BFS là một thuật toán tìm kiếm duyệt đồ thị hoặc cây theo t�
 
                             GREENDY 
 
-![GREENDY](https://github.com/Shiro74-coder/TTNT/blob/main/Greendy.gif)
+![GREENDY](https://github.com/Shiro74-coder/TTNT/blob/main/Greedy.gif)
 
                             A*
 
