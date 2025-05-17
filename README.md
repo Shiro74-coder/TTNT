@@ -20,55 +20,77 @@ BFS là một thuật toán tìm kiếm duyệt đồ thị hoặc cây theo t�
 
                             BFS 
 ![BFS](https://github.com/Shiro74-coder/TTNT/blob/main/BFS.gif)
-# 2.2. Các thuật toán tìm kiếm có thông tin
-# 2.3. Các thuật toán tìm kiếm cục bộ
-# 2.4. Các thuật toán tìm kiếm trong môi trường có ràng buộc
-# 2.5. Các thuật toán tìm kiếm trong môi trường phức tạp
-# 2.6. Các thuật toán học tăng cường
-
+# 2.1.2. UCS
+UCS là một thuật toán tìm kiếm duyệt đồ thị hoặc cây bằng cách luôn ưu tiên mở rộng nút trạng thái có chi phí đường đi tích lũy thấp nhất từ nút gốc (trạng thái ban đầu). Nó sử dụng một hàng đợi ưu tiên (priority queue) để quản lý các nút sẽ được duyệt, với độ ưu tiên được xác định bởi chi phí đường đi. Bắt đầu với một hàng đợi ưu tiên chứa nút gốc với chi phí đường đi là 0. Sử dụng một tập hợp (set) hoặc cấu trúc dữ liệu tương tự để lưu trữ các trạng thái đã được khám phá (expanded/visited) hoặc để cập nhật chi phí tốt hơn đến một nút đã có trong hàng đợi.
+UCS luôn tìm thấy lời giải nếu có lời giải tồn tại, luôn tìm thấy lời giải có tổng chi phí đường đi thấp nhất.
 
                             UCS 
-
 ![UCS](https://github.com/Shiro74-coder/TTNT/blob/main/UCS.gif)
+# 2.1.3. DFS
+DFS Tìm kiếm theo Chiều sâu là một thuật toán duyệt hoặc tìm kiếm trên cây hoặc đồ thị. Khác với BFS, DFS ưu tiên đi "sâu" nhất có thể vào một nhánh của cây tìm kiếm trước khi quay lui để thử các nhánh khác. DFS thường sử dụng một ngăn xếp (stack) để lưu trữ các trạng thái sẽ được duyệt. Cơ chế "vào sau, ra trước" (LIFO) của ngăn xếp giúp thuật toán đi sâu vào một nhánh. Tương tự như các thuật toán tìm kiếm khác, cần có một cơ chế (thường là một tập hợp - set) để lưu trữ các trạng thái đã được khám phá nhằm tránh việc duyệt lại và các vòng lặp vô hạn.
+Trong không gian trạng thái hữu hạn và không có vòng lặp (hoặc có cơ chế phát hiện vòng lặp), DFS sẽ tìm ra lời giải nếu có. Tuy nhiên, nếu không gian trạng thái là vô hạn hoặc không có cơ chế kiểm tra vòng lặp/độ sâu tối đa, DFS có thể đi vào một nhánh vô tận và không bao giờ tìm thấy lời giải ngay cả khi nó tồn tại. DFS không đảm bảo tìm ra lời giải nông nhất (có số bước ít nhất). Nó có thể tìm thấy một lời giải ở một nhánh rất sâu trong khi có một lời giải khác ngắn hơn ở một nhánh chưa được khám phá.
 
                             DFS 
-
 ![DFS](https://github.com/Shiro74-coder/TTNT/blob/main/DFS.gif)
+# 2.1.4. IDDFS
+DDFS (Tìm kiếm theo Chiều sâu Lặp) là một thuật toán tìm kiếm kết hợp những ưu điểm của Tìm kiếm theo Chiều sâu (DFS) về mặt không gian bộ nhớ và Tìm kiếm theo Chiều rộng (BFS) về mặt tính đầy đủ và tính tối ưu (khi chi phí bước là đồng nhất). IDDFS thực hiện một loạt các lượt tìm kiếm DFS với giới hạn độ sâu tăng dần. Nó bắt đầu với giới hạn độ sâu là 0, sau đó là 1, rồi 2, và cứ thế tiếp tục cho đến khi tìm thấy trạng thái đích.
+Giống như BFS, IDDFS sẽ luôn tìm thấy lời giải nếu có (khi chi phí bước là đồng nhất), IDDFS sẽ tìm thấy lời giải nông nhất (có số bước ít nhất) đầu tiên vì nó thử các độ sâu theo thứ tự tăng dần.
 
                             IDDFS 
-
 ![IDDFS](https://github.com/Shiro74-coder/TTNT/blob/main/IDDFS.gif)
+# 2.2. Các thuật toán tìm kiếm có thông tin
+# 2.2.1. Greedy
 
                             GREENDY 
-
 ![GREENDY](https://github.com/Shiro74-coder/TTNT/blob/main/Greedy.gif)
+# 2.2.2. A*
 
                             A*
-
 ![A*](https://github.com/Shiro74-coder/TTNT/blob/main/Astar.gif)
+# 2.2.3. IDA*
 
                             IDA*
-
 ![IDA*](https://github.com/Shiro74-coder/TTNT/blob/main/IDAstar.gif)
+# 2.2.4. Beam Search
+                            BEAM SEARCH
+![BeamSearch](https://github.com/Shiro74-coder/TTNT/blob/main/BeamSearch.gif)
+# 2.3. Các thuật toán tìm kiếm cục bộ
+# 2.3.1. Simple Hill Climbing
 
                             SIMPLE_HC
-
 ![SIMPLEHC](https://github.com/Shiro74-coder/TTNT/blob/main/SimpleHC.gif)
+# 2.3.2. Steepest Hill Climbing
 
                             STEEPEST_HC
 ![STEEPEST_HC](https://github.com/Shiro74-coder/TTNT/blob/main/SteepestHC.gif)
+# 2.3.3. Stochastic Hill Climbing
 
-                            STOCHASTIC
+                            STOCHASTIC_HC
 ![Stochastic](https://github.com/Shiro74-coder/TTNT/blob/main/Stochastic.gif)
+# 2.3.4. Simulated Annealing
 
                             SIMULATED ANNEALING
 ![Simulated_Annealing](https://github.com/Shiro74-coder/TTNT/blob/main/Simulated_Annealing.gif)
+# 2.3.5. Genetic 
 
-                            BEAM 
-![BeamSearch](https://github.com/Shiro74-coder/TTNT/blob/main/BeamSearch.gif)
-
-                          Genetic_GA
+                            Genetic_G
 ![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
+# 2.4. Các thuật toán tìm kiếm trong môi trường có ràng buộc
+# 2.4.1. Backtracking
+# 2.4.2. Generate and Test
+# 2.4.3. AC-3
+# 2.5. Các thuật toán tìm kiếm trong môi trường phức tạp
+# 2.5.1. And Or Search
+# 2.5.2. No Observable
+# 2.5.3. Pratially Observable
+# 2.6. Các thuật toán học tăng cường
+# 2.6.1. Q-Learning
+# 3. Kết luận
+
+
+
+
+
 
                           And_Or_Search
 ![And_Or_Search](https://github.com/Shiro74-coder/TTNT/blob/main/and_or_search.gif)
