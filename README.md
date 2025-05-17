@@ -27,43 +27,85 @@ UCS luôn tìm thấy lời giải nếu có lời giải tồn tại, luôn tì
                             UCS 
 ![UCS](https://github.com/Shiro74-coder/TTNT/blob/main/UCS.gif)
 # 2.1.3. DFS
-DFS Tìm kiếm theo Chiều sâu là một thuật toán duyệt hoặc tìm kiếm trên cây hoặc đồ thị. Khác với BFS, DFS ưu tiên đi "sâu" nhất có thể vào một nhánh của cây tìm kiếm trước khi quay lui để thử các nhánh khác. DFS thường sử dụng một ngăn xếp (stack) để lưu trữ các trạng thái sẽ được duyệt. Cơ chế "vào sau, ra trước" (LIFO) của ngăn xếp giúp thuật toán đi sâu vào một nhánh. Tương tự như các thuật toán tìm kiếm khác, cần có một cơ chế (thường là một tập hợp - set) để lưu trữ các trạng thái đã được khám phá nhằm tránh việc duyệt lại và các vòng lặp vô hạn.
+DFS Tìm kiếm theo Chiều sâu là một thuật toán duyệt hoặc tìm kiếm trên cây hoặc đồ thị. Khác với BFS, DFS ưu tiên đi "sâu" nhất có thể vào một nhánh của cây tìm kiếm trước khi quay lui để thử các nhánh khác. 
+DFS thường sử dụng một ngăn xếp (stack) để lưu trữ các trạng thái sẽ được duyệt. Cơ chế "vào sau, ra trước" (LIFO) của ngăn xếp giúp thuật toán đi sâu vào một nhánh. Tương tự như các thuật toán tìm kiếm khác, cần có một cơ chế (thường là một tập hợp - set) để lưu trữ các trạng thái đã được khám phá nhằm tránh việc duyệt lại và các vòng lặp vô hạn.
 Trong không gian trạng thái hữu hạn và không có vòng lặp (hoặc có cơ chế phát hiện vòng lặp), DFS sẽ tìm ra lời giải nếu có. Tuy nhiên, nếu không gian trạng thái là vô hạn hoặc không có cơ chế kiểm tra vòng lặp/độ sâu tối đa, DFS có thể đi vào một nhánh vô tận và không bao giờ tìm thấy lời giải ngay cả khi nó tồn tại. DFS không đảm bảo tìm ra lời giải nông nhất (có số bước ít nhất). Nó có thể tìm thấy một lời giải ở một nhánh rất sâu trong khi có một lời giải khác ngắn hơn ở một nhánh chưa được khám phá.
 
                             DFS 
 ![DFS](https://github.com/Shiro74-coder/TTNT/blob/main/DFS.gif)
 # 2.1.4. IDDFS
-DDFS (Tìm kiếm theo Chiều sâu Lặp) là một thuật toán tìm kiếm kết hợp những ưu điểm của Tìm kiếm theo Chiều sâu (DFS) về mặt không gian bộ nhớ và Tìm kiếm theo Chiều rộng (BFS) về mặt tính đầy đủ và tính tối ưu (khi chi phí bước là đồng nhất). IDDFS thực hiện một loạt các lượt tìm kiếm DFS với giới hạn độ sâu tăng dần. Nó bắt đầu với giới hạn độ sâu là 0, sau đó là 1, rồi 2, và cứ thế tiếp tục cho đến khi tìm thấy trạng thái đích.
+IIDDFS (Tìm kiếm theo Chiều sâu Lặp) là một thuật toán tìm kiếm kết hợp những ưu điểm của Tìm kiếm theo Chiều sâu (DFS) về mặt không gian bộ nhớ và Tìm kiếm theo Chiều rộng (BFS) về mặt tính đầy đủ và tính tối ưu (khi chi phí bước là đồng nhất). IDDFS thực hiện một loạt các lượt tìm kiếm DFS với giới hạn độ sâu tăng dần. Nó bắt đầu với giới hạn độ sâu là 0, sau đó là 1, rồi 2, và cứ thế tiếp tục cho đến khi tìm thấy trạng thái đích.
 Giống như BFS, IDDFS sẽ luôn tìm thấy lời giải nếu có (khi chi phí bước là đồng nhất), IDDFS sẽ tìm thấy lời giải nông nhất (có số bước ít nhất) đầu tiên vì nó thử các độ sâu theo thứ tự tăng dần.
 
                             IDDFS 
 ![IDDFS](https://github.com/Shiro74-coder/TTNT/blob/main/IDDFS.gif)
 # 2.2. Các thuật toán tìm kiếm có thông tin
 # 2.2.1. Greedy
+Greedy Best-First Search là một thuật toán tìm kiếm có thông tin. Nó cố gắng tìm ra lời giải bằng cách ưu tiên mở rộng nút trạng thái mà nó "tin" rằng gần nhất với trạng thái đích, dựa trên một hàm đánh giá heuristic (h(n)). Thuật toán này chọn nút tiếp theo để mở rộng dựa trên việc nút đó có vẻ "hứa hẹn" nhất theo đánh giá của hàm heuristic. Nó không quan tâm đến chi phí đã bỏ ra để đến được nút hiện tại (khác với A*). Mục tiêu là nhanh chóng tiến về phía đích, nhưng điều này có thể dẫn đến việc đi vào các đường không tối ưu hoặc bị kẹt.
+Greedy có thể đi vào một nhánh vô hạn hoặc bị kẹt trong các vòng lặp nếu không có cơ chế phát hiện lặp lại hiệu quả hoặc nếu không gian trạng thái có các "ngõ cụt" mà heuristic vẫn đánh giá là tốt. Trong không gian trạng thái hữu hạn và có kiểm tra lặp lại, nó sẽ tìm thấy lời giải nếu có. Vì chỉ dựa vào heuristic mà không xét chi phí đã đi, Greedy thường không tìm ra lời giải ngắn nhất hoặc có chi phí thấp nhất. Nó có thể bị "đánh lừa" bởi heuristic để đi theo một con đường có vẻ ngắn hạn tốt nhưng lại dài hơn về tổng thể.
 
-                            GREENDY 
+                            GREEDY 
 ![GREENDY](https://github.com/Shiro74-coder/TTNT/blob/main/Greedy.gif)
 # 2.2.2. A*
+A* (A-star) là một thuật toán tìm kiếm có thông tin, được coi là sự mở rộng thông minh của thuật toán Dijkstra và kết hợp ưu điểm của UCS với việc sử dụng hàm heuristic như trong Greedy. Nó tìm đường đi từ nút bắt đầu đến nút đích có tổng chi phí ước tính thấp nhất.
+A* đánh giá các nút (trạng thái) dựa trên một hàm đánh giá f(n), được tính bằng tổng của hai thành phần:
++ g(n): Chi phí thực tế để đi từ trạng thái ban đầu đến trạng thái n.
++ h(n): Chi phí ước tính (heuristic) để đi từ trạng thái n đến trạng thái đích.
+  
+Công thức: f(n)=g(n)+h(n)
+A* luôn ưu tiên mở rộng nút có giá trị f(n) thấp nhất. Vì vậy A* sẽ luôn tìm thấy lời giải nếu có. Nó đảm bảo tìm ra lời giải có chi phí thấp nhất (tối ưu) nếu hàm heuristic h(n) là chấp nhận được (admissible). Nếu h(n) nhất quán, A* còn hiệu quả hơn vì nó không cần phải mở lại các nút đã đóng.
 
                             A*
 ![A*](https://github.com/Shiro74-coder/TTNT/blob/main/Astar.gif)
 # 2.2.3. IDA*
+IDA* (A* Lặp Sâu Dần) là một thuật toán tìm kiếm đồ thị kết hợp những ưu điểm của A* (sử dụng hàm f(n)=g(n)+h(n)) với ý tưởng lặp sâu dần của IDDFS. Mục tiêu chính của IDA* là tìm ra lời giải tối ưu trong khi vẫn duy trì được yêu cầu bộ nhớ thấp. Thay vì sử dụng một giới hạn độ sâu như IDDFS, IDA* sử dụng một ngưỡng chi phí cho hàm f(n). Nó thực hiện một loạt các lượt tìm kiếm theo chiều sâu. Trong mỗi lượt, nó chỉ mở rộng các nút có giá trị f(n) không vượt quá ngưỡng hiện tại.
+IDA* đảm bảo tìm ra lời giải có chi phí thấp nhất nếu hàm heuristic h(n) là chấp nhận được.
 
                             IDA*
 ![IDA*](https://github.com/Shiro74-coder/TTNT/blob/main/IDAstar.gif)
 # 2.2.4. Beam Search
+Beam Search là một thuật toán tìm kiếm heuristic, có thể coi là một biến thể của Breadth-First Search nhưng tối ưu hóa hơn về mặt không gian bộ nhớ. Thay vì mở rộng tất cả các nút ở mỗi độ sâu như BFS, Beam Search chỉ giữ lại một số lượng giới hạn các nút "tốt nhất" ở mỗi mức, được gọi là "độ rộng chùm" (beam width), ký hiệu là w.
++ Ở mỗi bước (mức độ sâu), thuật toán tạo ra tất cả các trạng thái con của các trạng thái hiện tại trong "chùm".
++ Sau đó, nó sắp xếp tất cả các trạng thái con này dựa trên một hàm heuristic (tương tự như Greedy Best-First Search).
++ Chỉ có w trạng thái con tốt nhất (có giá trị heuristic thấp nhất) được giữ lại để tạo thành "chùm" cho bước tiếp theo. Các trạng thái khác sẽ bị loại bỏ (pruned).
+
+Vì Beam Search loại bỏ các trạng thái ở mỗi bước, nó có thể loại bỏ luôn nhánh chứa lời giải (kể cả lời giải tối ưu). Tương tự như tính đầy đủ, việc cắt tỉa có thể khiến nó bỏ lỡ lời giải tối ưu.
+
                             BEAM SEARCH
 ![BeamSearch](https://github.com/Shiro74-coder/TTNT/blob/main/BeamSearch.gif)
 # 2.3. Các thuật toán tìm kiếm cục bộ
 # 2.3.1. Simple Hill Climbing
+Simple Hill Climbing là một thuật toán tìm kiếm cục bộ. Nó hoạt động bằng cách liên tục di chuyển theo hướng "tốt hơn" trong không gian trạng thái, với hy vọng đạt đến một đỉnh (cục bộ hoặc toàn cục) tương ứng với lời giải. Đây là một thuật toán "tham lam" ở mức độ cục bộ.
++ Bắt đầu từ một trạng thái ban đầu.
++ Ở mỗi bước, xem xét các trạng thái "hàng xóm" (các trạng thái có thể đạt được bằng một hành động từ trạng thái hiện tại).
++ Chọn một trạng thái hàng xóm đầu tiên mà "tốt hơn" (theo một hàm đánh giá hoặc heuristic) so với trạng thái hiện tại và di chuyển đến đó.
++ Lặp lại quá trình này cho đến khi không tìm thấy hàng xóm nào tốt hơn trạng thái hiện tại (đạt đến "đỉnh") hoặc tìm thấy trạng thái đích.
+
+Thuật toán có thể bị "kẹt" ở các đỉnh cục bộ những trạng thái mà không có hàng xóm nào tốt hơn, nhưng bản thân nó không phải là trạng thái đích. Nó cũng có thể bị kẹt trên "cao nguyên" nơi các hàng xóm có cùng giá trị heuristic. Vì nó chỉ đưa ra quyết định dựa trên cải thiện cục bộ và chọn hàng xóm tốt hơn đầu tiên mà không xem xét toàn bộ không gian, nó không đảm bảo tìm ra lời giải tối ưu.
 
                             SIMPLE_HC
 ![SIMPLEHC](https://github.com/Shiro74-coder/TTNT/blob/main/SimpleHC.gif)
 # 2.3.2. Steepest Hill Climbing
+Steepest Ascent Hill Climbing là một biến thể của thuật toán tìm kiếm cục bộ Hill Climbing. Điểm khác biệt chính so với Simple Hill Climbing là thay vì chọn hàng xóm "tốt hơn" đầu tiên mà nó tìm thấy, Steepest Ascent Hill Climbing sẽ đánh giá tất cả các hàng xóm và chọn ra hàng xóm "tốt nhất" (tức là hàng xóm có giá trị heuristic cải thiện nhiều nhất so với trạng thái hiện tại).
+
++ Bắt đầu từ một trạng thái ban đầu.
++ Ở mỗi bước, tạo ra và đánh giá tất cả các trạng thái "hàng xóm".
++ Nếu có ít nhất một hàng xóm tốt hơn trạng thái hiện tại, di chuyển đến hàng xóm tốt nhất (dốc nhất).
++ Lặp lại quá trình này cho đến khi không tìm thấy hàng xóm nào tốt hơn trạng thái hiện tại (đạt đến "đỉnh") hoặc tìm thấy trạng thái đích.
+
+Tương tự như Simple Hill Climbing, nó vẫn có thể bị "kẹt" ở các đỉnh cục bộ hoặc cao nguyên. Quyết định dựa trên cải thiện cục bộ tốt nhất nên không đảm bảo lời giải toàn cục tối ưu.
 
                             STEEPEST_HC
 ![STEEPEST_HC](https://github.com/Shiro74-coder/TTNT/blob/main/SteepestHC.gif)
 # 2.3.3. Stochastic Hill Climbing
+Stochastic Hill Climbing là một biến thể của thuật toán tìm kiếm cục bộ Hill Climbing. Nó giới thiệu một yếu tố ngẫu nhiên vào việc chọn bước đi tiếp theo, nhằm mục đích có thể thoát khỏi các đỉnh cục bộ mà các phiên bản Hill Climbing đơn giản (Simple hoặc Steepest Ascent) dễ bị mắc kẹt.
+
++ Bắt đầu từ một trạng thái ban đầu.
++ Ở mỗi bước, tạo ra và đánh giá các trạng thái "hàng xóm".
++ Thay vì luôn chọn hàng xóm tốt nhất (Steepest Ascent) hoặc hàng xóm tốt hơn đầu tiên (Simple), Stochastic Hill Climbing chọn một hàng xóm "tốt hơn" một cách ngẫu nhiên. Xác suất chọn một hàng xóm tốt hơn có thể phụ thuộc vào mức độ cải thiện mà nó mang lại.
++ Nếu không có hàng xóm nào tốt hơn, thuật toán có thể dừng lại hoặc có thể cho phép di chuyển đến một trạng thái kém hơn với một xác suất nhất định ở một mức độ nào đó
+
+Vẫn có khả năng bị kẹt ở đỉnh cục bộ, mặc dù yếu tố ngẫu nhiên có thể giúp nó khám phá không gian trạng thái rộng hơn một chút so với các phiên bản Hill Climbing đơn giản. Quyết định ngẫu nhiên và dựa trên cải thiện cục bộ không đảm bảo lời giải toàn cục tối ưu.
 
                             STOCHASTIC_HC
 ![Stochastic](https://github.com/Shiro74-coder/TTNT/blob/main/Stochastic.gif)
