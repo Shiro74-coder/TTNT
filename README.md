@@ -110,12 +110,32 @@ Vẫn có khả năng bị kẹt ở đỉnh cục bộ, mặc dù yếu tố ng
                             STOCHASTIC_HC
 ![Stochastic](https://github.com/Shiro74-coder/TTNT/blob/main/Stochastic.gif)
 # 2.3.4. Simulated Annealing
+Simulated Annealing là một thuật toán tối ưu hóa xác suất lấy cảm hứng từ quá trình luyện kim trong vật lý, nơi một kim loại được nung nóng rồi làm nguội từ từ để đạt được trạng thái cấu trúc tinh thể bền vững (năng lượng thấp). Trong tìm kiếm, SA được sử dụng để tìm kiếm một lời giải "đủ tốt" cho một bài toán tối ưu hóa, đặc biệt hữu ích để thoát khỏi các cực trị cục bộ mà các thuật toán leo đồi (Hill Climbing) thường mắc phải.
++ Trạng thái hiện tại và hàng xóm: Thuật toán bắt đầu với một trạng thái hiện tại và ở mỗi bước, nó xem xét một trạng thái "hàng xóm" được chọn ngẫu nhiên.
++ Hàm năng lượng : Tương tự như hàm heuristic trong các thuật toán tìm kiếm cục bộ khác, SA sử dụng một hàm để đánh giá "chất lượng" hoặc "năng lượng" của một trạng thái. Mục tiêu thường là tìm trạng thái có năng lượng thấp nhất
++ Chấp nhận nước đi:
++    Nếu trạng thái hàng xóm tốt hơn (năng lượng thấp hơn) trạng thái hiện tại, thuật toán luôn di chuyển đến trạng thái hàng xóm đó.
++    Nếu trạng thái hàng xóm tệ hơn (năng lượng cao hơn), thuật toán vẫn có thể di chuyển đến đó với một xác suất nhất định. Xác suất này phụ thuộc vào hai yếu tố: Mức độ "tệ hơn" của nước đi (DeltaE – sự chênh lệch năng lượng). Một tham số gọi là "nhiệt độ(T).
++ Lịch trình làm nguội: "Nhiệt độ" T ban đầu được đặt ở mức cao, cho phép thuật toán thường xuyên chấp nhận cả những nước đi tệ hơn (tăng tính khám phá). Sau đó, T giảm dần theo một "lịch trình làm nguội". Khi T giảm, xác suất chấp nhận nước đi tệ hơn cũng giảm theo, khiến thuật toán dần dần "ổn định" và tập trung vào việc khai thác các vùng tốt.
+
+Xác suất chấp nhận một nước đi tệ hơn thường được tính bằng công thức: P = e^(−DeltaE/T)
+Nếu lịch trình làm nguội đủ chậm và T_final đủ thấp, SA có xác suất cao tiến đến trạng thái tối ưu toàn cục. Tuy nhiên, trong thực tế với thời gian hữu hạn, nó không đảm bảo tìm thấy lời giải ngay cả khi có. Không đảm bảo tìm ra lời giải tối ưu toàn cục, nhưng thường tìm được lời giải "khá tốt" và có khả năng thoát khỏi các cực trị cục bộ tốt hơn Hill Climbing.
 
                             SIMULATED ANNEALING
 ![Simulated_Annealing](https://github.com/Shiro74-coder/TTNT/blob/main/Simulated_Annealing.gif)
 # 2.3.5. Genetic 
+Giải thuật Di truyền (GA) là một thuật toán tìm kiếm và tối ưu hóa lấy cảm hứng từ quá trình tiến hóa tự nhiên và chọn lọc tự nhiên. Nó hoạt động trên một quần thể các cá thể, mỗi cá thể đại diện cho một giải pháp tiềm năng cho bài toán. Qua các thế hệ, quần thể này được cải thiện dần thông qua các toán tử di truyền như chọn lọc, lai ghép, và đột biến.
 
-                            Genetic_G
++ Khởi tạo Quần thể: Tạo ra một tập hợp ban đầu các giải pháp ngẫu nhiên (hoặc gần ngẫu nhiên) cho bài toán.
++ Đánh giá Độ thích nghi : Mỗi cá thể trong quần thể được đánh giá bằng một hàm thích nghi (fitness function) để xác định "chất lượng" của nó (mức độ tốt của giải pháp mà nó đại diện).
++ Chọn lọc: Các cá thể "tốt hơn" có nhiều khả năng được chọn để tạo ra thế hệ tiếp theo.
++ Lai ghép: Các cặp cá thể "cha mẹ" được chọn sẽ trao đổi thông tin (gen) để tạo ra các cá thể "con" mới.
++ Đột biến: Một số thay đổi nhỏ, ngẫu nhiên được áp dụng cho các cá thể con để duy trì sự đa dạng trong quần thể và tránh hội tụ sớm về các giải pháp dưới tối ưu.
++ Lặp lại: Quá trình đánh giá, chọn lọc, lai ghép, và đột biến được lặp lại qua nhiều thế hệ, với hy vọng quần thể sẽ hội tụ về một hoặc nhiều giải pháp tối ưu hoặc gần tối ưu.
+
+Không đảm bảo tìm thấy lời giải, đặc biệt là lời giải tối ưu, trong thời gian hữu hạn. Nó là một thuật toán tìm kiếm xác suất. Không đảm bảo tìm ra lời giải tối ưu. Chất lượng của giải pháp phụ thuộc vào nhiều yếu tố như kích thước quần thể, số thế hệ, các toán tử di truyền, và hàm thích nghi.
+
+                            Genetic_GA
 ![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
 # 2.4. Các thuật toán tìm kiếm trong môi trường có ràng buộc
 # 2.4.1. Backtracking
