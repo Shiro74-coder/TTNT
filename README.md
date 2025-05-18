@@ -177,7 +177,7 @@ Xác suất chấp nhận một nước đi tệ hơn thường được tính b
 Nếu lịch trình làm nguội đủ chậm và T_final đủ thấp, SA có xác suất cao tiến đến trạng thái tối ưu toàn cục. Tuy nhiên, trong thực tế với thời gian hữu hạn, nó không đảm bảo tìm thấy lời giải ngay cả khi có. Không đảm bảo tìm ra lời giải tối ưu toàn cục, nhưng thường tìm được lời giải "khá tốt" và có khả năng thoát khỏi các cực trị cục bộ tốt hơn Hill Climbing.
 
                             SIMULATED ANNEALING
-![Simulated_Annealing](https://github.com/Shiro74-coder/TTNT/blob/main/Simulated_Annealing.gif)
+![Simulated_Annealing](https://github.com/Shiro74-coder/TTNT/blob/Shiro74-coder-patch-2/Simulated_Annealing.gif)
 # 2.3.5. Genetic 
 Giải thuật Di truyền (GA) là một thuật toán tìm kiếm và tối ưu hóa lấy cảm hứng từ quá trình tiến hóa tự nhiên và chọn lọc tự nhiên. Nó hoạt động trên một quần thể các cá thể, mỗi cá thể đại diện cho một giải pháp tiềm năng cho bài toán. Qua các thế hệ, quần thể này được cải thiện dần thông qua các toán tử di truyền như chọn lọc, lai ghép, và đột biến.
 
@@ -191,7 +191,7 @@ Giải thuật Di truyền (GA) là một thuật toán tìm kiếm và tối ư
 Không đảm bảo tìm thấy lời giải, đặc biệt là lời giải tối ưu, trong thời gian hữu hạn. Nó là một thuật toán tìm kiếm xác suất. Không đảm bảo tìm ra lời giải tối ưu. Chất lượng của giải pháp phụ thuộc vào nhiều yếu tố như kích thước quần thể, số thế hệ, các toán tử di truyền, và hàm thích nghi.
 
                             Genetic_GA
-![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
+![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/Shiro74-coder-patch-2/GA.gif)
 # 2.3.6. Hình ảnh so sánh và nhận xét các thuật toán
 Trạng thái 1:
 Start State: "123456078"
@@ -235,8 +235,8 @@ Backtracking là một kỹ thuật giải thuật tổng quát, hoạt động 
 
 Backtracking có thể áp dụng cho nhiều loại CSP. Đảm bảo tìm ra giải pháp nếu có, vì nó duyệt một cách có hệ thống không gian tìm kiếm. Tuy nhiên rong trường hợp xấu nhất, nó có thể phải duyệt qua một số lượng rất lớn các khả năng. Thứ tự chọn biến và thứ tự thử giá trị có thể ảnh hưởng lớn đến hiệu suất.
 
-                            Genetic_GA
-![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
+                            BackTracking
+![Backtracking](https://github.com/Shiro74-coder/TTNT/blob/Shiro74-coder-patch-2/Backtracking.gif)
 # 2.4.2. Generate and Test
 Sinh và Kiểm tra là một phương pháp tìm kiếm cơ bản và trực tiếp. Trong ngữ cảnh giải quyết Bài toán Thỏa mãn Ràng buộc (CSP), thuật toán này hoạt động theo hai bước chính lặp đi lặp lại:
 + Sinh (Generate): Tạo ra một ứng cử viên giải pháp hoàn chỉnh, tức là một phép gán đầy đủ giá trị cho tất cả các biến của bài toán.
@@ -250,8 +250,8 @@ Nếu ứng cử viên thỏa mãn tất cả các ràng buộc, nó được co
 
 Nếu được phép chạy đủ lâu (với max_attempts đủ lớn), về mặt lý thuyết, nó có thể tìm thấy trạng thái đích do tính ngẫu nhiên của việc sinh hoán vị sẽ bao phủ toàn bộ không gian các trạng thái hợp lệ (9! trạng thái). Không tối ưu về đường đi: Thuật toán này không tìm "đường đi" hay chuỗi hành động. Nó chỉ cố gắng "đoán mò" ra trạng thái đích. Do đó, không có khái niệm về tính tối ưu của đường đi ở đây. Hiệu suất rất thấp: Đây là nhược điểm lớn nhất. Với 8-puzzle có 9! = 362,880 trạng thái hợp lệ, việc tìm ra một trạng thái đích cụ thể bằng cách sinh ngẫu nhiên là rất không hiệu quả và có thể mất rất nhiều thời gian, hoặc không bao giờ tìm thấy trong một số lần thử hợp lý.
 
-                            Genetic_GA
-![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
+                            Generate and Test
+![Generate_and_Test](https://github.com/Shiro74-coder/TTNT/blob/Shiro74-coder-patch-2/Generate_Test.gif)
 # 2.4.3. AC-3
 AC-3 là một thuật toán được sử dụng để tiền xử lý hoặc trong quá trình giải các Bài toán Thỏa mãn Ràng buộc (CSPs). Mục tiêu chính của AC-3 là đạt được tính nhất quán cung.
 + Bài toán Thỏa mãn Ràng buộc (CSP): Được định nghĩa bởi một tập các biến, mỗi biến có một miền giá trị, và một tập các ràng buộc quy định các tổ hợp giá trị hợp lệ cho các tập con của biến.
@@ -265,8 +265,8 @@ AC-3 hoạt động bằng cách loại bỏ các giá trị không nhất quán
 
 Mục đích của AC-3 không trực tiếp tìm ra một giải pháp (một cấu hình puzzle hoàn chỉnh) nếu có nhiều khả năng. Thay vào đó, nó loại bỏ các giá trị rõ ràng là không thể khỏi miền của các biến, làm cho bài toán trở nên "đơn giản hơn".
 
-                            Genetic_GA
-![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
+                            AC-3
+![AC-3](https://github.com/Shiro74-coder/TTNT/blob/Shiro74-coder-patch-2/AC-3.gif)
 # 2.5. Các thuật toán tìm kiếm trong môi trường phức tạp
 # 2.5.1. And Or Search
 Thuật toán AND-OR tìm kiếm trong cây AND-OR chứ không phải cây thông thường. Trong cây này:
@@ -280,8 +280,8 @@ Bài toán 8-puzzle có các hành động xác định (mỗi nước đi chỉ
 
 Không đảm bảo tối ưu về độ dài đường đi: Đây là một đặc điểm quan trọng cần nhấn mạnh. Do thuật toán tìm và trả về giải pháp đầu tiên nó gặp phải theo kiểu duyệt sâu (DFS-like), giải pháp này không chắc chắn là đường đi ngắn nhất.
 
-                            Genetic_GA
-![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
+                            And_Or_Search
+![And_Or_Search](https://github.com/Shiro74-coder/TTNT/blob/Shiro74-coder-patch-2/And_Or_Search.gif)
 # 2.5.2. No Observable
 No Observable Search là thuật toán tìm kiếm trong môi trường không quan sát được.
 Môi trường không quan sát được bao gồm:
@@ -298,7 +298,10 @@ Cách Hoạt động:
 
 Kết quả: Nếu thành công, thuật toán trả về chuỗi hành động tìm được. Giao diện sau đó sẽ mô phỏng việc áp dụng các hành động này và hiển thị sự thay đổi của trạng thái niềm tin.
 Nhận xét: Không gian tìm kiếm là không gian của các tập hợp trạng thái (trạng thái niềm tin), lớn hơn nhiều so với không gian của các trạng thái vật lý đơn lẻ. Tương tự nếu được triển khai theo kiểu BFS, nó sẽ tìm thấy chuỗi hành động ngắn nhất nếu có lời giải. Chi phí có thể rất tốn kém vì kích thước của các trạng thái niềm tin có thể lớn và số lượng trạng thái niềm tin có thể rất nhiều.
-# 2.5.3. Pratially Observable
+
+                                No Observable
+![No_Observable](https://github.com/Shiro74-coder/TTNT/blob/Shiro74-coder-patch-2/No_Observable.gif)
+# 2.5.3. Partially Observable
 Partially Observable Search là thuật toán tìm kiếm trong môi trường quan sát được một phần. Đây là một bước tiến bộ hơn so với môi trường không quan sát được, vì giờ đây tác nhân có thể nhận được một số thông tin từ môi trường sau mỗi hành động.
 + Trạng thái niềm tin: Tương tự như No Observable Search, tác nhân vẫn duy trì một trạng thái niềm tin, là một tập hợp các trạng thái vật lý mà nó tin rằng mình có thể đang ở đó.
 + Chu trình Hành động - Quan sát - Cập nhật:
@@ -309,6 +312,8 @@ Partially Observable Search là thuật toán tìm kiếm trong môi trường q
 Mục tiêu: Tìm một chuỗi các hành động (có thể là một chính sách phụ thuộc vào quan sát) để đưa tác nhân từ trạng thái niềm tin ban đầu đến một trạng thái niềm tin mà tất cả các trạng thái trong đó đều là trạng thái đích.
 Nhận xét: Do có sự kết hợp dự đoán và cập nhật giúp cho Pratially Observale Search tốt hơn No Observable Search. Tuy nhiên độ phức tạp vẫn rất cao do làm việc với không gian các trạng thái niềm tin. Việc cập nhật dựa trên quan sát giúp thu hẹp trạng thái niềm tin, có thể làm giảm sự bùng nổ ở một mức độ nào đó so với No Observable. Chuỗi hành động tìm được (nếu là chuỗi cố định) có thể không phải lúc nào cũng là tối ưu nhất trong mọi tình huống thực tế, vì nó được tìm kiếm dựa trên việc dự đoán trạng thái niềm tin mà không biết trước các quan sát sẽ nhận được. Các thuật toán phức tạp hơn có thể tìm ra các "chính sách" phân nhánh dựa trên các quan sát khác nhau.
 
+                                Partially_Observable
+![Partially_Observable](https://github.com/Shiro74-coder/TTNT/blob/Shiro74-coder-patch-2/Partially_Obs.gif)
 # 2.6. Các thuật toán học tăng cường
 # 2.6.1. Q-Learning
 Q-learning là một thuật toán học tăng cường không cần mô hình (model-free), dựa trên giá trị (value-based). Mục tiêu của nó là học một chính sách tối ưu, cho biết hành động nào là tốt nhất để thực hiện tại mỗi trạng thái, nhằm tối đa hóa tổng phần thưởng tích lũy trong tương lai.
