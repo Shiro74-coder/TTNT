@@ -39,6 +39,9 @@ Giống như BFS, IDDFS sẽ luôn tìm thấy lời giải nếu có (khi chi p
 
                             IDDFS 
 ![IDDFS](https://github.com/Shiro74-coder/TTNT/blob/main/IDDFS.gif)
+# 2.1.5 Hình ảnh so sánh và nhận xét các thuật toán
+![image](https://github.com/user-attachments/assets/d2ef5cf4-f4d0-418b-9b0a-3c271111ff97)
+
 # 2.2. Các thuật toán tìm kiếm có thông tin
 # 2.2.1. Greedy
 Greedy Best-First Search là một thuật toán tìm kiếm có thông tin. Nó cố gắng tìm ra lời giải bằng cách ưu tiên mở rộng nút trạng thái mà nó "tin" rằng gần nhất với trạng thái đích, dựa trên một hàm đánh giá heuristic (h(n)). Thuật toán này chọn nút tiếp theo để mở rộng dựa trên việc nút đó có vẻ "hứa hẹn" nhất theo đánh giá của hàm heuristic. Nó không quan tâm đến chi phí đã bỏ ra để đến được nút hiện tại (khác với A*). Mục tiêu là nhanh chóng tiến về phía đích, nhưng điều này có thể dẫn đến việc đi vào các đường không tối ưu hoặc bị kẹt.
