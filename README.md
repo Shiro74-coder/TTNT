@@ -40,8 +40,34 @@ Giống như BFS, IDDFS sẽ luôn tìm thấy lời giải nếu có (khi chi p
                             IDDFS 
 ![IDDFS](https://github.com/Shiro74-coder/TTNT/blob/main/IDDFS.gif)
 # 2.1.5 Hình ảnh so sánh và nhận xét các thuật toán
-![image](https://github.com/user-attachments/assets/d2ef5cf4-f4d0-418b-9b0a-3c271111ff97)
+Trạng thái 1:
+Start State: "123456078"
+Goal State: "123456780"
 
+Trạng thái 2:
+Start State: "123560478"
+Goal State: "123456780"
+
+Trạng thái 3:
+Start State:  "142305786"
+Goal State: "123456780"	
+
+![image](https://github.com/user-attachments/assets/d2ef5cf4-f4d0-418b-9b0a-3c271111ff97)
+![image](https://github.com/user-attachments/assets/37708a38-5846-4e48-a4fa-21dd7a651ff3)
+
+Tính Tối ưu về Số Bước:
+BFS, UCS, IDDFS: Cả ba thuật toán này đều tìm ra số bước di chuyển ít nhất (tối ưu) để đến trạng thái đích trong tất cả các trường hợp thử nghiệm. Điều này hoàn toàn phù hợp với lý thuyết, vì BFS và IDDFS đảm bảo tìm ra lời giải nông nhất, và UCS khi chi phí mỗi bước là 1 cũng hoạt động tương tự BFS.
+DFS: Thuật toán DFS tìm ra đường đi với số bước lớn hơn đáng kể so với các thuật toán còn lại (ví dụ: 30 bước so với 2 ở Trạng thái 1; 48 bước so với 16 ở Trạng thái 3). Điều này cho thấy DFS không đảm bảo tính tối ưu về chiều dài đường đi; nó có xu hướng đi sâu vào một nhánh và có thể tìm thấy một lời giải dài hơn trước khi tìm ra lời giải ngắn nhất (hoặc không bao giờ tìm ra lời giải ngắn nhất nếu không duyệt hết).
+
+Thời gian Thực thi:
+BFS và UCS: Có thời gian thực thi khá tương đồng và tăng lên khi số bước của lời giải (độ khó của bài toán) tăng.
+IDDFS: Thời gian thực thi của IDDFS cũng tăng theo độ khó của bài toán và thường cao hơn một chút so với BFS/UCS cho cùng một bài toán(ví dụ: 2.106s so với 1.653s cho Trạng thái 1; 10.825s so với 9.755s cho Trạng thái 3) . Điều này là do IDDFS lặp lại việc tìm kiếm ở các độ sâu nông hơn, mặc dù chi phí này thường không quá lớn so với việc tìm kiếm ở độ sâu cuối cùng.
+
+DFS: Có thời gian thực thi cao nhất trong tất cả các trường hợp, và dường như không tương quan trực tiếp với độ sâu của lời giải tối ưu mà là độ sâu tối đa mà nó khám phá hoặc số lượng nút nó phải duyệt qua trong các nhánh dài. Ví dụ, ở Trạng thái 1 (2 bước tối ưu), DFS mất tới 18s để tìm ra một lời giải 30 bước. Điều này do việc triển khai DFS(có giới hạn độ sâu 50 và kiểm tra lặp trong path hiện tại) vẫn phải khám phá nhiều nhánh không hiệu quả.
+Kết luận:
++ IDDFS nổi lên như một lựa chọn cân bằng tốt trong nhóm không thông tin: nó tìm ra lời giải tối ưu về số bước (giống BFS/UCS) và mặc dù thời gian có thể cao hơn BFS/UCS một chút, nhưng về mặt lý thuyết, nó có ưu điểm lớn về tiết kiệm bộ nhớ (điều này không thể hiện qua số liệu thời gian/số bước nhưng là một đặc tính quan trọng).
++ BFS và UCS hoạt động hiệu quả và tối ưu cho các bài toán có độ sâu lời giải không quá lớn. Tuy nhiên, chúng có thể gặp vấn đề về bộ nhớ và thời gian với các bài toán khó hơn nhiều.
++ DFS (với cách triển khai hiện tại) tỏ ra kém hiệu quả nhất cho bài toán tìm đường đi tối ưu trong 8-puzzle, cả về thời gian thực thi lẫn chất lượng lời giải (số bước). Nó có thể hữu ích trong các trường hợp không gian trạng thái rất lớn mà chỉ cần tìm bất kỳ lời giải nào và bộ nhớ là ưu tiên hàng đầu, nhưng với giới hạn độ sâu và cách nó tìm kiếm, nó không cạnh tranh được trong các trường hợp này.
 # 2.2. Các thuật toán tìm kiếm có thông tin
 # 2.2.1. Greedy
 Greedy Best-First Search là một thuật toán tìm kiếm có thông tin. Nó cố gắng tìm ra lời giải bằng cách ưu tiên mở rộng nút trạng thái mà nó "tin" rằng gần nhất với trạng thái đích, dựa trên một hàm đánh giá heuristic (h(n)). Thuật toán này chọn nút tiếp theo để mở rộng dựa trên việc nút đó có vẻ "hứa hẹn" nhất theo đánh giá của hàm heuristic. Nó không quan tâm đến chi phí đã bỏ ra để đến được nút hiện tại (khác với A*). Mục tiêu là nhanh chóng tiến về phía đích, nhưng điều này có thể dẫn đến việc đi vào các đường không tối ưu hoặc bị kẹt.
@@ -76,6 +102,8 @@ Vì Beam Search loại bỏ các trạng thái ở mỗi bước, nó có thể 
 
                             BEAM SEARCH
 ![BeamSearch](https://github.com/Shiro74-coder/TTNT/blob/main/BeamSearch.gif)
+# 2.2.5. Hình ảnh so sánh và nhận xét các thuật toán
+
 # 2.3. Các thuật toán tìm kiếm cục bộ
 # 2.3.1. Simple Hill Climbing
 Simple Hill Climbing là một thuật toán tìm kiếm cục bộ. Nó hoạt động bằng cách liên tục di chuyển theo hướng "tốt hơn" trong không gian trạng thái, với hy vọng đạt đến một đỉnh (cục bộ hoặc toàn cục) tương ứng với lời giải. Đây là một thuật toán "tham lam" ở mức độ cục bộ.
@@ -140,6 +168,8 @@ Không đảm bảo tìm thấy lời giải, đặc biệt là lời giải t�
 
                             Genetic_GA
 ![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
+# 2.3.6. Hình ảnh so sánh và nhận xét các thuật toán
+
 # 2.4. Các thuật toán tìm kiếm trong môi trường có ràng buộc
 # 2.4.1. Backtracking
 Backtracking là một kỹ thuật giải thuật tổng quát, hoạt động bằng cách xây dựng giải pháp một cách từ từ, từng bước một. Tại mỗi bước, nếu việc lựa chọn một giá trị cho một biến (trong trường hợp này là một ô trên bảng puzzle) không vi phạm các ràng buộc đã định, thuật toán sẽ tiếp tục. Nếu tại một thời điểm nào đó, không thể tìm thấy giá trị hợp lệ cho biến tiếp theo, hoặc một lựa chọn dẫn đến vi phạm ràng buộc, thuật toán sẽ "quay lui" – tức là hủy bỏ lựa chọn trước đó và thử một lựa chọn khác. Quá trình này lặp lại cho đến khi tìm được một giải pháp hoàn chỉnh thỏa mãn tất cả các ràng buộc, hoặc đã thử hết mọi khả năng mà không tìm được giải pháp.
