@@ -102,7 +102,7 @@ Beam Search là một thuật toán tìm kiếm heuristic, có thể coi là m�
 Vì Beam Search loại bỏ các trạng thái ở mỗi bước, nó có thể loại bỏ luôn nhánh chứa lời giải (kể cả lời giải tối ưu). Tương tự như tính đầy đủ, việc cắt tỉa có thể khiến nó bỏ lỡ lời giải tối ưu.
 
                             BEAM SEARCH
-![BeamSearch](https://github.com/Shiro74-coder/TTNT/blob/main/BeamSearch.gif)
+![BeamSearch](https://github.com/Shiro74-coder/TTNT/blob/main/Beam_Search.gif)
 # 2.2.5. Hình ảnh so sánh và nhận xét các thuật toán
 Trạng thái 1:
 Start State: "123456078"
