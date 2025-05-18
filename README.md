@@ -139,7 +139,7 @@ Simple Hill Climbing là một thuật toán tìm kiếm cục bộ. Nó hoạt 
 Thuật toán có thể bị "kẹt" ở các đỉnh cục bộ những trạng thái mà không có hàng xóm nào tốt hơn, nhưng bản thân nó không phải là trạng thái đích. Nó cũng có thể bị kẹt trên "cao nguyên" nơi các hàng xóm có cùng giá trị heuristic. Vì nó chỉ đưa ra quyết định dựa trên cải thiện cục bộ và chọn hàng xóm tốt hơn đầu tiên mà không xem xét toàn bộ không gian, nó không đảm bảo tìm ra lời giải tối ưu.
 
                             SIMPLE_HC
-![SIMPLEHC](https://github.com/Shiro74-coder/TTNT/blob/main/SimpleHC.gif)
+![SIMPLEHC](https://github.com/Shiro74-coder/TTNT/blob/main/Simple_HC.gif)
 # 2.3.2. Steepest Hill Climbing
 Steepest Ascent Hill Climbing là một biến thể của thuật toán tìm kiếm cục bộ Hill Climbing. Điểm khác biệt chính so với Simple Hill Climbing là thay vì chọn hàng xóm "tốt hơn" đầu tiên mà nó tìm thấy, Steepest Ascent Hill Climbing sẽ đánh giá tất cả các hàng xóm và chọn ra hàng xóm "tốt nhất" (tức là hàng xóm có giá trị heuristic cải thiện nhiều nhất so với trạng thái hiện tại).
 
@@ -163,7 +163,7 @@ Stochastic Hill Climbing là một biến thể của thuật toán tìm kiếm 
 Vẫn có khả năng bị kẹt ở đỉnh cục bộ, mặc dù yếu tố ngẫu nhiên có thể giúp nó khám phá không gian trạng thái rộng hơn một chút so với các phiên bản Hill Climbing đơn giản. Quyết định ngẫu nhiên và dựa trên cải thiện cục bộ không đảm bảo lời giải toàn cục tối ưu.
 
                             STOCHASTIC_HC
-![Stochastic](https://github.com/Shiro74-coder/TTNT/blob/main/Stochastic.gif)
+![Stochastic](https://github.com/Shiro74-coder/TTNT/blob/main/Stochastic_HC.gif)
 # 2.3.4. Simulated Annealing
 Simulated Annealing là một thuật toán tối ưu hóa xác suất lấy cảm hứng từ quá trình luyện kim trong vật lý, nơi một kim loại được nung nóng rồi làm nguội từ từ để đạt được trạng thái cấu trúc tinh thể bền vững (năng lượng thấp). Trong tìm kiếm, SA được sử dụng để tìm kiếm một lời giải "đủ tốt" cho một bài toán tối ưu hóa, đặc biệt hữu ích để thoát khỏi các cực trị cục bộ mà các thuật toán leo đồi (Hill Climbing) thường mắc phải.
 + Trạng thái hiện tại và hàng xóm: Thuật toán bắt đầu với một trạng thái hiện tại và ở mỗi bước, nó xem xét một trạng thái "hàng xóm" được chọn ngẫu nhiên.
