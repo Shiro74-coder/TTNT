@@ -195,9 +195,59 @@ Không đảm bảo tối ưu về độ dài đường đi: Đây là một đ�
                             Genetic_GA
 ![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
 # 2.5.2. No Observable
+No Observable Search là thuật toán tìm kiếm trong môi trường không quan sát được.
+Môi trường không quan sát được bao gồm:
++ Trạng thái Niềm tin (Belief State): Thay vì biết một trạng thái hiện tại duy nhất, tác nhân duy trì một "trạng thái niềm tin" (belief state). Trạng thái niềm tin là một tập hợp tất cả các trạng thái vật lý mà tác nhân tin rằng mình có thể đang ở đó.
++ Hành động và Dự đoán: Khi tác nhân thực hiện một hành động, trạng thái niềm tin sẽ được cập nhật. Hành động được áp dụng cho mỗi trạng thái trong trạng thái niềm tin hiện tại. Trạng thái niềm tin mới sẽ là tập hợp tất cả các trạng thái kết quả có thể có. Quá trình này được gọi là dự đoán.
++ Mục tiêu: Tìm một chuỗi các hành động để đưa tác nhân từ một trạng thái niềm tin ban đầu đến một trạng thái niềm tin mà tất cả các trạng thái trong đó đều là trạng thái đích.
+
+Cách Hoạt động:
+
++ Khởi đầu với Trạng thái niềm tin (Belief State): Thuật toán không làm việc với một trạng thái cụ thể duy nhất mà với một tập hợp các trạng thái có thể có, gọi là "trạng thái niềm tin" (belief state) ban đầu. Đây là tất cả những trạng thái mà tác nhân nghĩ rằng mình có thể đang ở đó. Mục tiêu cũng là một "tập hợp các trạng thái đích".
++ Tìm kiếm trên không gian các trạng thái niềm tin: Thuật toán thực hiện một tìm kiếm theo BFS để tìm một chuỗi các hành động (ví dụ: Lên, Xuống, Trái, Phải). Mỗi "nút" trong quá trình tìm kiếm này không phải là một trạng thái puzzle đơn lẻ, mà là một trạng thái niềm tin (một tập các trạng thái puzzle).
++ Khi một hành động được thử nghiệm trên một trạng thái niềm tin hiện tại: Hành động đó được áp dụng cho tất cả các trạng thái trong trạng thái niềm tin hiện tại. Tập hợp tất cả các trạng thái kết quả (sau khi loại bỏ trùng lặp) tạo thành trạng thái niềm tin mới.
++ Mục tiêu là tìm một chuỗi hành động sao cho khi áp dụng chuỗi đó, trạng thái niềm tin kết quả là một tập hợp mà mọi trạng thái trong đó đều là trạng thái đích.
+
+Kết quả: Nếu thành công, thuật toán trả về chuỗi hành động tìm được. Giao diện sau đó sẽ mô phỏng việc áp dụng các hành động này và hiển thị sự thay đổi của trạng thái niềm tin.
+Nhận xét: Không gian tìm kiếm là không gian của các tập hợp trạng thái (trạng thái niềm tin), lớn hơn nhiều so với không gian của các trạng thái vật lý đơn lẻ. Tương tự nếu được triển khai theo kiểu BFS, nó sẽ tìm thấy chuỗi hành động ngắn nhất nếu có lời giải. Chi phí có thể rất tốn kém vì kích thước của các trạng thái niềm tin có thể lớn và số lượng trạng thái niềm tin có thể rất nhiều.
 # 2.5.3. Pratially Observable
+Partially Observable Search là thuật toán tìm kiếm trong môi trường quan sát được một phần. Đây là một bước tiến bộ hơn so với môi trường không quan sát được, vì giờ đây tác nhân có thể nhận được một số thông tin từ môi trường sau mỗi hành động.
++ Trạng thái niềm tin: Tương tự như No Observable Search, tác nhân vẫn duy trì một trạng thái niềm tin, là một tập hợp các trạng thái vật lý mà nó tin rằng mình có thể đang ở đó.
++ Chu trình Hành động - Quan sát - Cập nhật:
++ Dự đoán: Tác nhân thực hiện một hành động. Trạng thái niềm tin hiện tại được cập nhật thành một trạng thái niềm tin mới bằng cách áp dụng hành động đó cho tất cả các trạng thái trong niềm tin hiện tại.
++ Quan sát: Sau khi hành động, tác nhân nhận được một quan sát từ môi trường.
++ Cập nhật: Trạng thái niềm tin dự đoán sau đó được "lọc" hoặc "cập nhật" dựa trên quan sát vừa nhận được. Chỉ những trạng thái trong niềm tin dự đoán mà nhất quán với quan sát đó mới được giữ lại. Điều này thường làm cho trạng thái niềm tin mới trở nên nhỏ hơn và chính xác hơn.
+
+Mục tiêu: Tìm một chuỗi các hành động (có thể là một chính sách phụ thuộc vào quan sát) để đưa tác nhân từ trạng thái niềm tin ban đầu đến một trạng thái niềm tin mà tất cả các trạng thái trong đó đều là trạng thái đích.
+Nhận xét: Do có sự kết hợp dự đoán và cập nhật giúp cho Pratially Observale Search tốt hơn No Observable Search. Tuy nhiên độ phức tạp vẫn rất cao do làm việc với không gian các trạng thái niềm tin. Việc cập nhật dựa trên quan sát giúp thu hẹp trạng thái niềm tin, có thể làm giảm sự bùng nổ ở một mức độ nào đó so với No Observable. Chuỗi hành động tìm được (nếu là chuỗi cố định) có thể không phải lúc nào cũng là tối ưu nhất trong mọi tình huống thực tế, vì nó được tìm kiếm dựa trên việc dự đoán trạng thái niềm tin mà không biết trước các quan sát sẽ nhận được. Các thuật toán phức tạp hơn có thể tìm ra các "chính sách" phân nhánh dựa trên các quan sát khác nhau.
 # 2.6. Các thuật toán học tăng cường
 # 2.6.1. Q-Learning
+Q-learning là một thuật toán học tăng cường không cần mô hình (model-free), dựa trên giá trị (value-based). Mục tiêu của nó là học một chính sách tối ưu, cho biết hành động nào là tốt nhất để thực hiện tại mỗi trạng thái, nhằm tối đa hóa tổng phần thưởng tích lũy trong tương lai.
++ Q-learning học một hàm giá trị hành động, ký hiệu là Q(s,a), đại diện cho "chất lượng" (phần thưởng kỳ vọng trong tương lai) của việc thực hiện hành động a tại trạng thái s, và sau đó tuân theo chính sách tối ưu.
++ Giá trị Q được cập nhật lặp đi lặp lại thông qua kinh nghiệm mà tác nhân thu được khi tương tác với môi trường, sử dụng công thức cập nhật Bellman: Q(s,a)←Q(s,a)+α⋅[r+γ⋅maxa′Q(s′,a′)−Q(s,a)] Trong đó: 
++ α (alpha): Tốc độ học (learning rate).
++ r: Phần thưởng nhận được sau khi thực hiện hành động a tại trạng thái s và chuyển đến trạng thái s′.
++ γ (gamma): Hệ số chiết khấu (discount factor), quyết định tầm quan trọng của phần thưởng trong tương lai.
++ s′: Trạng thái tiếp theo.
++ maxa′Q(s′,a′): Giá trị Q lớn nhất có thể đạt được từ trạng thái s′.
++ Thăm dò (Exploration) và Khai thác (Exploitation): Để học được chính sách tốt, tác nhân cần cân bằng giữa việc thử các hành động mới để khám phá môi trường (thăm dò) và việc chọn các hành động mà nó đã biết là tốt (khai thác). Phương pháp phổ biến là epsilon-greedy: với xác suất ϵ (epsilon), chọn một hành động ngẫu nhiên; ngược lại (với xác suất 1−ϵ), chọn hành động có giá trị Q cao nhất. ϵ thường giảm dần theo thời gian.
+
+Số lượt chơi thử/episodes để huấn luyện): 50000. Đây là số lần mà tác nhân sẽ thử chơi từ trạng thái bắt đầu cho đến khi đạt được trạng thái đích hoặc đạt đến số bước tối đa trong một lượt chơi.
+
+Tốc độ học(alpha): 0.1. Dùng để xác định mức độ mà thông tin mới (từ phần thưởng và giá trị Q tương lai) sẽ ghi đè lên thông tin cũ trong bảng Q.
+
+Hệ số chiết khấu(gamma): 0.95. Quyết định tầm quan trọng của phần thưởng trong tương lai. Giá trị gần 1 làm cho tác nhân quan tâm nhiều hơn đến phần thưởng dài hạn.
+
+epsilon: Khởi tạo là 1.0. Ban đầu, epsilon=1.0 có nghĩa là tác nhân sẽ luôn chọn hành động một cách ngẫu nhiên (ưu tiên thăm dò).
+
+Tốc độ giảm (epsilon): 0.99995. Sau mỗi bước epsilon sẽ được nhân với giá trị này, làm cho nó giảm dần
+
+Giá trị epsilon tối thiểu: 0.05. Đảm bảo rằng ngay cả khi đã huấn luyện nhiều, tác nhân vẫn có một xác suất nhỏ (ở đây là 5%) để thực hiện hành động ngẫu nhiên, giúp tránh bị kẹt hoàn toàn vào một chính sách dưới tối ưu.
+
+Số bước tối đa trong một episode: 1000. Giới hạn số hành động mà tác nhân có thể thực hiện trong một lượt chơi thử. Nếu không đạt được đích sau số bước này, episode đó sẽ kết thúc.
+
+Có khả năng hội tụ đến đường đi ngắn nhất nếu huấn luyện đủ lâu và các tham số phù hợp. Tuy nhiên Thời gian huấn luyện lâu, cần rất nhiều lượt thử để học hiệu quả, đặc biệt với không gian trạng thái lớn của 8-puzzle, tốn bộ nhớ (Q-table): Lưu trữ giá trị Q cho mọi cặp (trạng thái, hành động) có thể rất lớn (9! trạng thái). Hiệu quả phụ thuộc lớn vào việc chọn đúng tốc độ học, hệ số chiết khấu, và chiến lược epsilon.
+
 # 3. Kết luận
 
 
