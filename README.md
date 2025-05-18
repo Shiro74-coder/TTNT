@@ -139,10 +139,61 @@ Không đảm bảo tìm thấy lời giải, đặc biệt là lời giải t�
 ![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
 # 2.4. Các thuật toán tìm kiếm trong môi trường có ràng buộc
 # 2.4.1. Backtracking
+Backtracking là một kỹ thuật giải thuật tổng quát, hoạt động bằng cách xây dựng giải pháp một cách từ từ, từng bước một. Tại mỗi bước, nếu việc lựa chọn một giá trị cho một biến (trong trường hợp này là một ô trên bảng puzzle) không vi phạm các ràng buộc đã định, thuật toán sẽ tiếp tục. Nếu tại một thời điểm nào đó, không thể tìm thấy giá trị hợp lệ cho biến tiếp theo, hoặc một lựa chọn dẫn đến vi phạm ràng buộc, thuật toán sẽ "quay lui" – tức là hủy bỏ lựa chọn trước đó và thử một lựa chọn khác. Quá trình này lặp lại cho đến khi tìm được một giải pháp hoàn chỉnh thỏa mãn tất cả các ràng buộc, hoặc đã thử hết mọi khả năng mà không tìm được giải pháp.
+Để áp dụng Backtracking theo hướng CSP cho 8-puzzle, chúng em đã định nghĩa bài toán như sau:
++ Biến (Variables): Gồm 9 biến, mỗi biến tương ứng với một ô trên bảng 8-puzzle (ví dụ V0 đến V8).
++ Miền giá trị (Domains): Mỗi biến (ô) có thể nhận một giá trị trong tập từ 0 đến 8, trong đó số 0 đại diện cho ô trống.
++ Ràng buộc (Constraints): Ràng buộc chính và duy nhất trong trường hợp cơ bản này là AllDifferent. Nghĩa là, tất cả 9 ô trên bảng phải chứa các giá trị (số) khác nhau; không có hai ô nào được chứa cùng một số.
+
+Backtracking có thể áp dụng cho nhiều loại CSP. Đảm bảo tìm ra giải pháp nếu có, vì nó duyệt một cách có hệ thống không gian tìm kiếm. Tuy nhiên rong trường hợp xấu nhất, nó có thể phải duyệt qua một số lượng rất lớn các khả năng. Thứ tự chọn biến và thứ tự thử giá trị có thể ảnh hưởng lớn đến hiệu suất.
+
+                            Genetic_GA
+![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
 # 2.4.2. Generate and Test
+Sinh và Kiểm tra là một phương pháp tìm kiếm cơ bản và trực tiếp. Trong ngữ cảnh giải quyết Bài toán Thỏa mãn Ràng buộc (CSP), thuật toán này hoạt động theo hai bước chính lặp đi lặp lại:
++ Sinh (Generate): Tạo ra một ứng cử viên giải pháp hoàn chỉnh, tức là một phép gán đầy đủ giá trị cho tất cả các biến của bài toán.
++ Kiểm tra (Test): Kiểm tra xem ứng cử viên giải pháp vừa được sinh ra có thỏa mãn tất cả các ràng buộc của CSP hay không.
+
+Nếu ứng cử viên thỏa mãn tất cả các ràng buộc, nó được coi là một lời giải. Nếu không, thuật toán sẽ loại bỏ ứng cử viên đó và quay lại bước "Sinh" để tạo ra một ứng cử viên mới. Quá trình này tiếp tục cho đến khi tìm được một lời giải hoặc đã đạt đến một giới hạn nào đó (ví dụ: số lần thử tối đa).
+Để áp dụng phương pháp này cho bài toán 8-puzzle, Em đã định nghĩa lại bài toán theo cấu trúc của một CSP:
++ Biến (Variables): 9 ô trên bảng 8-puzzle (V0 đến V8).
++ Miền giá trị (Domains): Mỗi ô (biến) có thể nhận một giá trị từ tập {0, 1, 2, 3, 4, 5, 6, 7, 8}, với '0' đại diện cho ô trống.
++ Ràng buộc (Constraints): Ràng buộc cốt lõi là AllDifferent, tức là tất cả 9 ô phải chứa các giá trị (số) duy nhất, không có sự lặp lại.
+
+Nếu được phép chạy đủ lâu (với max_attempts đủ lớn), về mặt lý thuyết, nó có thể tìm thấy trạng thái đích do tính ngẫu nhiên của việc sinh hoán vị sẽ bao phủ toàn bộ không gian các trạng thái hợp lệ (9! trạng thái). Không tối ưu về đường đi: Thuật toán này không tìm "đường đi" hay chuỗi hành động. Nó chỉ cố gắng "đoán mò" ra trạng thái đích. Do đó, không có khái niệm về tính tối ưu của đường đi ở đây. Hiệu suất rất thấp: Đây là nhược điểm lớn nhất. Với 8-puzzle có 9! = 362,880 trạng thái hợp lệ, việc tìm ra một trạng thái đích cụ thể bằng cách sinh ngẫu nhiên là rất không hiệu quả và có thể mất rất nhiều thời gian, hoặc không bao giờ tìm thấy trong một số lần thử hợp lý.
+
+                            Genetic_GA
+![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
 # 2.4.3. AC-3
+AC-3 là một thuật toán được sử dụng để tiền xử lý hoặc trong quá trình giải các Bài toán Thỏa mãn Ràng buộc (CSPs). Mục tiêu chính của AC-3 là đạt được tính nhất quán cung.
++ Bài toán Thỏa mãn Ràng buộc (CSP): Được định nghĩa bởi một tập các biến, mỗi biến có một miền giá trị, và một tập các ràng buộc quy định các tổ hợp giá trị hợp lệ cho các tập con của biến.
++ Tính nhất quán cung: Một biến Xi được gọi là nhất quán cung với biến Xj nếu với mọi giá trị x trong miền của Xi, tồn tại một giá trị y trong miền của Xj sao cho (x,y) thỏa mãn ràng buộc giữa Xi và Xj. Và một CSP là nhất quán cung nếu mọi biến đều nhất quán cung với mọi biến khác.
+
+AC-3 hoạt động bằng cách loại bỏ các giá trị không nhất quán khỏi miền giá trị của các biến, từ đó thu hẹp không gian tìm kiếm và giúp các thuật toán tìm kiếm (như Backtracking) hoạt động hiệu quả hơn.
+Để áp dụng AC-3 như một CSP:
++ Biến: 9 ô trên bảng, V0,V1,...,V8 (trong mã nguồn là C0 đến C8). Mỗi biến đại diện cho giá trị số tại một ô.
++ Miền giá trị (Domains): Nếu một ô có giá trị đã biết (ví dụ, người dùng nhập '1', '5', '0'), miền của biến tương ứng chỉ chứa giá trị đó: Di={giá trị đã biết}. Nếu một ô chưa biết giá trị (ví dụ, người dùng nhập '?'), miền của biến tương ứng ban đầu chứa tất cả các giá trị có thể có: Di={0,1,2,3,4,5,6,7,8}.
++ Ràng buộc: Ràng buộc chính là AllDifferent: tất cả các biến (ô) phải có giá trị khác nhau. Điều này có nghĩa là với bất kỳ hai biến Vi và Vj (i khác j), giá trị của Vi phải khác giá trị của Vj.
+
+Mục đích của AC-3 không trực tiếp tìm ra một giải pháp (một cấu hình puzzle hoàn chỉnh) nếu có nhiều khả năng. Thay vào đó, nó loại bỏ các giá trị rõ ràng là không thể khỏi miền của các biến, làm cho bài toán trở nên "đơn giản hơn".
+
+                            Genetic_GA
+![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
 # 2.5. Các thuật toán tìm kiếm trong môi trường phức tạp
 # 2.5.1. And Or Search
+Thuật toán AND-OR tìm kiếm trong cây AND-OR chứ không phải cây thông thường. Trong cây này:
++ Nút OR đại diện cho sự lựa chọn giữa các hành động.
++ Nút AND đại diện cho các trường hợp mà tất cả các nhánh con phải được giải quyết thành công (tức là các kết quả khả thi của một hành động không chắc chắn).
+
+Bài toán 8-puzzle có các hành động xác định (mỗi nước đi chỉ dẫn đến một trạng thái kết quả duy nhất). 
++ Do đó, hàm RESULTS(state, action) trong EightPuzzleProblemAdapter luôn trả về một danh sách chỉ chứa một trạng thái.
++ Điều này làm đơn giản hóa logic của phương thức _and_search: nó chỉ cần xử lý một kết quả duy nhất này bằng cách gọi _or_search cho trạng thái đó.
++ Kết quả là, kế hoạch (plan) được tìm thấy là một chuỗi hành động tuần tự đơn giản, không phải là một kế hoạch có điều kiện phức tạp như trong trường hợp bất định.
+
+Không đảm bảo tối ưu về độ dài đường đi: Đây là một đặc điểm quan trọng cần nhấn mạnh. Do thuật toán tìm và trả về giải pháp đầu tiên nó gặp phải theo kiểu duyệt sâu (DFS-like), giải pháp này không chắc chắn là đường đi ngắn nhất.
+
+                            Genetic_GA
+![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
 # 2.5.2. No Observable
 # 2.5.3. Pratially Observable
 # 2.6. Các thuật toán học tăng cường
