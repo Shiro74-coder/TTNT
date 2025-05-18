@@ -342,6 +342,8 @@ Số bước tối đa trong một episode: 1000. Giới hạn số hành độn
 
 Có khả năng hội tụ đến đường đi ngắn nhất nếu huấn luyện đủ lâu và các tham số phù hợp. Tuy nhiên Thời gian huấn luyện lâu, cần rất nhiều lượt thử để học hiệu quả, đặc biệt với không gian trạng thái lớn của 8-puzzle, tốn bộ nhớ (Q-table): Lưu trữ giá trị Q cho mọi cặp (trạng thái, hành động) có thể rất lớn (9! trạng thái). Hiệu quả phụ thuộc lớn vào việc chọn đúng tốc độ học, hệ số chiết khấu, và chiến lược epsilon.
 
+                                  Q-Learning
+![Q-Learning](https://github.com/Shiro74-coder/TTNT/blob/main/q-learning-_2_.gif)
 # 3. Kết luận
 Qua quá trình thực hiện đồ án "Ứng dụng các thuật toán Trí tuệ Nhân tạo để giải bài toán 8-Puzzle", em đã đạt được những kết quả đáng kể và rút ra nhiều bài học kinh nghiệm quý báu. Đồ án này đã giúp em thành công trong việc xây dựng một ứng dụng phần mềm hoàn chỉnh, cung cấp một nền tảng trực quan để người dùng có thể tương tác và khám phá một phổ rộng các thuật toán Trí tuệ Nhân tạo. Cụ thể như:
 
