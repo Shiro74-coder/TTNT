@@ -103,7 +103,29 @@ Vì Beam Search loại bỏ các trạng thái ở mỗi bước, nó có thể 
                             BEAM SEARCH
 ![BeamSearch](https://github.com/Shiro74-coder/TTNT/blob/main/BeamSearch.gif)
 # 2.2.5. Hình ảnh so sánh và nhận xét các thuật toán
+Trạng thái 1:
+Start State: "123456078"
+Goal State: "123456780"
 
+Trạng thái 2:
+Start State: "123560478"
+Goal State: "123456780"
+
+Trạng thái 3:
+Start State:  "142305786"
+Goal State: "123456780"	
+
+![image](https://github.com/user-attachments/assets/c435cf30-b48f-405c-96cc-69be1f21d465)
+![image](https://github.com/user-attachments/assets/7b68cf9a-57c7-41cd-91c0-b875407eedfa)
+
+Nhận xét: 
++ Tính tối ưu: A* và IDA* vượt trội trong việc đảm bảo tìm ra lộ trình ngắn nhất nhờ sự kết hợp giữa chi phí thực tế g(n) và chi phí ước tính h(n) (với heuristic chấp nhận được như Manhattan Distance).
++ Greedy chỉ dựa vào heuristic h(n), nên khi heuristic không "dẫn đường" tốt ở các trạng thái phức tạp, nó dễ bị lạc hướng và tìm ra đường đi dài, tốn thời gian. Beam Search cũng dựa vào heuristic để lựa chọn các ứng cử viên trong "chùm" nhưng có yếu tố giới hạn số lượng ứng cử viên được giữ lại.
++ Thời gian thực thi: Với các bài toán đơn giản, tất cả các thuật toán có thông tin đều nhanh. Khi độ khó tăng (Trạng thái 3), A* và IDA* thể hiện sự ổn định và hiệu quả hơn về thời gian so với Greedy.
+Kết luận:
++ A* và IDA*: Lựa chọn hàng đầu để tìm đường đi ngắn nhất, hiệu suất tốt. IDA* thường ưu thế hơn về bộ nhớ.
++ Beam Search: Lựa chọn cân bằng, có thể nhanh nhưng hy sinh tính tối ưu hoàn toàn.
++ Greedy: Nhanh với bài dễ, nhưng không đáng tin cậy cho các bài toán phức tạp hoặc khi cần đảm bảo tối ưu.
 # 2.3. Các thuật toán tìm kiếm cục bộ
 # 2.3.1. Simple Hill Climbing
 Simple Hill Climbing là một thuật toán tìm kiếm cục bộ. Nó hoạt động bằng cách liên tục di chuyển theo hướng "tốt hơn" trong không gian trạng thái, với hy vọng đạt đến một đỉnh (cục bộ hoặc toàn cục) tương ứng với lời giải. Đây là một thuật toán "tham lam" ở mức độ cục bộ.
@@ -169,6 +191,17 @@ Không đảm bảo tìm thấy lời giải, đặc biệt là lời giải t�
                             Genetic_GA
 ![Genetic_GA](https://github.com/Shiro74-coder/TTNT/blob/main/Genetic_GA.gif)
 # 2.3.6. Hình ảnh so sánh và nhận xét các thuật toán
+Trạng thái 1:
+Start State: "123456078"
+Goal State: "123456780"
+
+Trạng thái 2:
+Start State: "123560478"
+Goal State: "123456780"
+
+Trạng thái 3:
+Start State:  "142305786"
+Goal State: "123456780"	
 
 # 2.4. Các thuật toán tìm kiếm trong môi trường có ràng buộc
 # 2.4.1. Backtracking
@@ -253,6 +286,18 @@ Partially Observable Search là thuật toán tìm kiếm trong môi trường q
 
 Mục tiêu: Tìm một chuỗi các hành động (có thể là một chính sách phụ thuộc vào quan sát) để đưa tác nhân từ trạng thái niềm tin ban đầu đến một trạng thái niềm tin mà tất cả các trạng thái trong đó đều là trạng thái đích.
 Nhận xét: Do có sự kết hợp dự đoán và cập nhật giúp cho Pratially Observale Search tốt hơn No Observable Search. Tuy nhiên độ phức tạp vẫn rất cao do làm việc với không gian các trạng thái niềm tin. Việc cập nhật dựa trên quan sát giúp thu hẹp trạng thái niềm tin, có thể làm giảm sự bùng nổ ở một mức độ nào đó so với No Observable. Chuỗi hành động tìm được (nếu là chuỗi cố định) có thể không phải lúc nào cũng là tối ưu nhất trong mọi tình huống thực tế, vì nó được tìm kiếm dựa trên việc dự đoán trạng thái niềm tin mà không biết trước các quan sát sẽ nhận được. Các thuật toán phức tạp hơn có thể tìm ra các "chính sách" phân nhánh dựa trên các quan sát khác nhau.
+Trạng thái 1:
+Start State: "123456078"
+Goal State: "123456780"
+
+Trạng thái 2:
+Start State: "123560478"
+Goal State: "123456780"
+
+Trạng thái 3:
+Start State:  "142305786"
+Goal State: "123456780"	
+
 # 2.6. Các thuật toán học tăng cường
 # 2.6.1. Q-Learning
 Q-learning là một thuật toán học tăng cường không cần mô hình (model-free), dựa trên giá trị (value-based). Mục tiêu của nó là học một chính sách tối ưu, cho biết hành động nào là tốt nhất để thực hiện tại mỗi trạng thái, nhằm tối đa hóa tổng phần thưởng tích lũy trong tương lai.
