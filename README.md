@@ -64,6 +64,7 @@ BFS và UCS: Có thời gian thực thi khá tương đồng và tăng lên khi 
 IDDFS: Thời gian thực thi của IDDFS cũng tăng theo độ khó của bài toán và thường cao hơn một chút so với BFS/UCS cho cùng một bài toán(ví dụ: 2.106s so với 1.653s cho Trạng thái 1; 10.825s so với 9.755s cho Trạng thái 3) . Điều này là do IDDFS lặp lại việc tìm kiếm ở các độ sâu nông hơn, mặc dù chi phí này thường không quá lớn so với việc tìm kiếm ở độ sâu cuối cùng.
 
 DFS: Có thời gian thực thi cao nhất trong tất cả các trường hợp, và dường như không tương quan trực tiếp với độ sâu của lời giải tối ưu mà là độ sâu tối đa mà nó khám phá hoặc số lượng nút nó phải duyệt qua trong các nhánh dài. Ví dụ, ở Trạng thái 1 (2 bước tối ưu), DFS mất tới 18s để tìm ra một lời giải 30 bước. Điều này do việc triển khai DFS(có giới hạn độ sâu 50 và kiểm tra lặp trong path hiện tại) vẫn phải khám phá nhiều nhánh không hiệu quả.
+
 Kết luận:
 + IDDFS nổi lên như một lựa chọn cân bằng tốt trong nhóm không thông tin: nó tìm ra lời giải tối ưu về số bước (giống BFS/UCS) và mặc dù thời gian có thể cao hơn BFS/UCS một chút, nhưng về mặt lý thuyết, nó có ưu điểm lớn về tiết kiệm bộ nhớ (điều này không thể hiện qua số liệu thời gian/số bước nhưng là một đặc tính quan trọng).
 + BFS và UCS hoạt động hiệu quả và tối ưu cho các bài toán có độ sâu lời giải không quá lớn. Tuy nhiên, chúng có thể gặp vấn đề về bộ nhớ và thời gian với các bài toán khó hơn nhiều.
@@ -203,6 +204,26 @@ Trạng thái 3:
 Start State:  "142305786"
 Goal State: "123456780"	
 
+![image](https://github.com/user-attachments/assets/eeb7b3bd-ad78-4cd6-bdd4-9e061f2ddf09)
+![image](https://github.com/user-attachments/assets/b1d04fb0-56b4-44da-9127-0560f1ca98f5)
+
+Nhận xét:
+Các biến thể Hill Climbing (Simple, Steepest Ascent, Stochastic):
++ Kết quả: Tìm được lời giải (thường là tối ưu hoặc gần tối ưu) cho các trạng thái dễ (Trạng thái 1 & 2). Tuy nhiên, tất cả đều bị kẹt và không tìm được lời giải cho trạng thái khó hơn (Trạng thái 3), minh họa rõ nhược điểm về cực trị cục bộ.
++ Hiệu suất: Thời gian chạy nhanh cho các bài dễ. Stochastic HC có thể cho số bước không tối ưu hơn Simple/Steepest HC một chút.
+
+Simulated Annealing (SA):
++ Kết quả: Giải được trạng thái rất dễ (Trạng thái 1). Tuy nhiên, cũng bị kẹt ở các trạng thái khó hơn (Trạng thái 2 & 3), cho thấy các tham số mặc định có thể chưa tối ưu cho việc thoát khỏi cực trị cục bộ trong các trường hợp này.
++ Hiệu suất: Nhanh khi tìm được lời giải.
+
+Genetic Algorithm (GA):
++ Kết quả: (Không có dữ liệu cho Trạng thái 1). Tìm được lời giải tối ưu cho Trạng thái 2. Quan trọng nhất, GA là thuật toán duy nhất trong nhóm này tìm được lời giải cho Trạng thái 3 (khó), dù lời giải có số bước lớn hơn (42 bước).
++ Hiệu suất: Thời gian chạy lâu hơn đáng kể, đặc biệt với bài toán khó, do xử lý cả quần thể. Chất lượng lời giải không đảm bảo tối ưu nhưng có khả năng tìm được lời giải khi các thuật toán khác thất bại.
+
+Kết luận:
++ Hill Climbing (các biến thể): Nhanh cho bài dễ, dễ bị kẹt ở bài khó.
++ Simulated Annealing: Có tiềm năng thoát kẹt nhưng cần tinh chỉnh tham số; trong thử nghiệm này hoạt động chưa nổi bật ở bài khó.
++ Genetic Algorithm: Mạnh mẽ nhất trong việc tìm ra lời giải cho các trường hợp phức tạp (không bị kẹt), nhưng đánh đổi bằng thời gian và tính không tối ưu của lời giải.
 # 2.4. Các thuật toán tìm kiếm trong môi trường có ràng buộc
 # 2.4.1. Backtracking
 Backtracking là một kỹ thuật giải thuật tổng quát, hoạt động bằng cách xây dựng giải pháp một cách từ từ, từng bước một. Tại mỗi bước, nếu việc lựa chọn một giá trị cho một biến (trong trường hợp này là một ô trên bảng puzzle) không vi phạm các ràng buộc đã định, thuật toán sẽ tiếp tục. Nếu tại một thời điểm nào đó, không thể tìm thấy giá trị hợp lệ cho biến tiếp theo, hoặc một lựa chọn dẫn đến vi phạm ràng buộc, thuật toán sẽ "quay lui" – tức là hủy bỏ lựa chọn trước đó và thử một lựa chọn khác. Quá trình này lặp lại cho đến khi tìm được một giải pháp hoàn chỉnh thỏa mãn tất cả các ràng buộc, hoặc đã thử hết mọi khả năng mà không tìm được giải pháp.
@@ -286,17 +307,6 @@ Partially Observable Search là thuật toán tìm kiếm trong môi trường q
 
 Mục tiêu: Tìm một chuỗi các hành động (có thể là một chính sách phụ thuộc vào quan sát) để đưa tác nhân từ trạng thái niềm tin ban đầu đến một trạng thái niềm tin mà tất cả các trạng thái trong đó đều là trạng thái đích.
 Nhận xét: Do có sự kết hợp dự đoán và cập nhật giúp cho Pratially Observale Search tốt hơn No Observable Search. Tuy nhiên độ phức tạp vẫn rất cao do làm việc với không gian các trạng thái niềm tin. Việc cập nhật dựa trên quan sát giúp thu hẹp trạng thái niềm tin, có thể làm giảm sự bùng nổ ở một mức độ nào đó so với No Observable. Chuỗi hành động tìm được (nếu là chuỗi cố định) có thể không phải lúc nào cũng là tối ưu nhất trong mọi tình huống thực tế, vì nó được tìm kiếm dựa trên việc dự đoán trạng thái niềm tin mà không biết trước các quan sát sẽ nhận được. Các thuật toán phức tạp hơn có thể tìm ra các "chính sách" phân nhánh dựa trên các quan sát khác nhau.
-Trạng thái 1:
-Start State: "123456078"
-Goal State: "123456780"
-
-Trạng thái 2:
-Start State: "123560478"
-Goal State: "123456780"
-
-Trạng thái 3:
-Start State:  "142305786"
-Goal State: "123456780"	
 
 # 2.6. Các thuật toán học tăng cường
 # 2.6.1. Q-Learning
