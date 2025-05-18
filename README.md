@@ -123,6 +123,7 @@ Nhận xét:
 + Tính tối ưu: A* và IDA* vượt trội trong việc đảm bảo tìm ra lộ trình ngắn nhất nhờ sự kết hợp giữa chi phí thực tế g(n) và chi phí ước tính h(n) (với heuristic chấp nhận được như Manhattan Distance).
 + Greedy chỉ dựa vào heuristic h(n), nên khi heuristic không "dẫn đường" tốt ở các trạng thái phức tạp, nó dễ bị lạc hướng và tìm ra đường đi dài, tốn thời gian. Beam Search cũng dựa vào heuristic để lựa chọn các ứng cử viên trong "chùm" nhưng có yếu tố giới hạn số lượng ứng cử viên được giữ lại.
 + Thời gian thực thi: Với các bài toán đơn giản, tất cả các thuật toán có thông tin đều nhanh. Khi độ khó tăng (Trạng thái 3), A* và IDA* thể hiện sự ổn định và hiệu quả hơn về thời gian so với Greedy.
+
 Kết luận:
 + A* và IDA*: Lựa chọn hàng đầu để tìm đường đi ngắn nhất, hiệu suất tốt. IDA* thường ưu thế hơn về bộ nhớ.
 + Beam Search: Lựa chọn cân bằng, có thể nhanh nhưng hy sinh tính tối ưu hoàn toàn.
@@ -337,14 +338,15 @@ Số bước tối đa trong một episode: 1000. Giới hạn số hành độn
 Có khả năng hội tụ đến đường đi ngắn nhất nếu huấn luyện đủ lâu và các tham số phù hợp. Tuy nhiên Thời gian huấn luyện lâu, cần rất nhiều lượt thử để học hiệu quả, đặc biệt với không gian trạng thái lớn của 8-puzzle, tốn bộ nhớ (Q-table): Lưu trữ giá trị Q cho mọi cặp (trạng thái, hành động) có thể rất lớn (9! trạng thái). Hiệu quả phụ thuộc lớn vào việc chọn đúng tốc độ học, hệ số chiết khấu, và chiến lược epsilon.
 
 # 3. Kết luận
+Qua quá trình thực hiện đồ án "Ứng dụng các thuật toán Trí tuệ Nhân tạo để giải bài toán 8-Puzzle", em đã đạt được những kết quả đáng kể và rút ra nhiều bài học kinh nghiệm quý báu. Đồ án này đã giúp em thành công trong việc xây dựng một ứng dụng phần mềm hoàn chỉnh, cung cấp một nền tảng trực quan để người dùng có thể tương tác và khám phá một phổ rộng các thuật toán Trí tuệ Nhân tạo. Cụ thể như:
 
++ Triển khai đa dạng thuật toán: Em đã triển khai và tích hợp thành công nhiều nhóm thuật toán khác nhau, từ các phương pháp tìm kiếm không thông tin (BFS, UCS, DFS, IDDFS), tìm kiếm có thông tin (Greedy, A*, IDA*, Beam Search), tìm kiếm cục bộ (Hill Climbing, Simulated Annealing, Genetic Algorithm), đến các thuật toán giải quyết Bài toán Thỏa mãn Ràng buộc (Backtracking CSP, AC-3, Generate & Test CSP), các thuật toán cho môi trường phức tạp (AND-OR Search, No Observable, Partially Observable) và cả học tăng cường (Q-learning).
++ Trực quan hóa hiệu quả: Ứng dụng cho phép người dùng không chỉ xem kết quả cuối cùng mà còn theo dõi được quá trình hoạt động và các bước trung gian của nhiều thuật toán, đặc biệt là các thuật toán phức tạp như Backtracking CSP, AC-3, No Observable, Partially Observable, và quá trình huấn luyện của Q-learning. Điều này giúp việc hiểu thuật toán trở nên dễ dàng và sinh động hơn.
++ Phân tích và so sánh thuật toán: Thông qua việc thử nghiệm các thuật toán trên các bộ dữ liệu 8-puzzle với độ khó khác nhau, em đã thu thập được dữ liệu thực nghiệm về thời gian thực thi và chất lượng lời giải. Kết quả này đã giúp làm rõ hơn ưu nhược điểm và tính phù hợp của từng thuật toán cho bài toán cụ thể, đồng thời đối chiếu được với cơ sở lý thuyết.
 
+Những điều bản thân em học được:
++ Có một cái nhìn tổng quan hơn về thuật toán AI: Việc trực tiếp triển khai từng thuật toán, từ cấu trúc dữ liệu đến logic xử lý, đã giúp em hiểu sâu hơn rất nhiều so với việc chỉ học lý thuyết. Em đã nắm bắt được bản chất, cơ chế hoạt động, cũng như ưu và nhược điểm của từng phương pháp.
++ Nâng cao kỹ năng lập trình và phát triển phần mềm: Em đã cải thiện đáng kể kỹ năng lập trình Python, làm việc với thư viện giao diện đồ họa (CustomTkinter), thiết kế cấu trúc chương trình, xử lý sự kiện, và gỡ lỗi một ứng dụng tương đối phức tạp.
++ Tư duy giải quyết vấn đề: Đối mặt với các thách thức trong quá trình triển khai, như việc tối ưu hóa hiển thị cho các thuật toán có nhiều bước trung gian (AC-3, Backtracking CSP) hay xử lý các trường hợp biên, đã rèn luyện cho em tư duy phân tích và giải quyết vấn đề một cách hệ thống.
 
-
-
-
-                          And_Or_Search
-![And_Or_Search](https://github.com/Shiro74-coder/TTNT/blob/main/and_or_search.gif)
-
-                          Search_no_Observation
-![And_Or_Search](https://github.com/Shiro74-coder/TTNT/blob/main/search_no_obs.gif)
+Đồ án cá nhân này không chỉ là một bài tập ứng dụng kiến thức đã học mà còn là một hành trình khám phá thực tế, giúp em củng cố nền tảng về Trí tuệ Nhân tạo và trang bị thêm những kỹ năng cần thiết cho công việc sau này. Em tin rằng những kinh nghiệm và kiến thức thu được từ đồ án sẽ là hành trang quý báu cho sự phát triển chuyên môn của bản thân.
